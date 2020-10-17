@@ -1,5 +1,5 @@
 #!/bin/sh
-#Script Modified by Badbox
+#Script Modified by SETHS
 
 #Requirement
 apt update
@@ -22,7 +22,7 @@ ln -fs /usr/share/zoneinfo/Asia/Manila /etc/localtime
 
 # install webmin
 cd
-wget "https://github.com/phcu-badbox/phcracker/raw/master/Files/Plugins/webmin_1.801_all.deb"
+wget "https://raw.githubusercontent.com/seths012/bads/master//Files/Plugins/webmin_1.801_all.deb"
 dpkg --install webmin_1.801_all.deb;
 apt-get -y -f install;
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
@@ -31,7 +31,7 @@ service webmin restart
 
 # install screenfetch
 cd
-wget -O /usr/bin/screenfetch "https://raw.githubusercontent.com/phcu-badbox/phcracker/master/Files/Plugins/screenfetch"
+wget -O /usr/bin/screenfetch "https://raw.githubusercontent.com/seths012/bads/master//Files/Plugins/screenfetch"
 chmod +x /usr/bin/screenfetch
 echo "clear" >> .profile
 echo "screenfetch" >> .profile
@@ -72,7 +72,7 @@ http_access deny manager
 http_access allow localhost
 http_access deny all
 http_port 8085
-http_port 3355
+http_port 1105
 coredump_dir /var/spool/squid3
 refresh_pattern ^ftp: 1440 20% 10080
 refresh_pattern ^gopher: 1440 0% 1440
@@ -84,7 +84,7 @@ sed -i $MYIP2 /etc/squid/squid.conf;
 
 # setting banner
 rm /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/phcu-badbox/phcracker/master/Files/Others/issue.net"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/seths012/bads/master/Files/Others/issue.net"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 service ssh restart
@@ -382,7 +382,7 @@ echo "   - OpenVPN		: TCP 1147 "  | tee -a log-install.txt
 echo "   - OpenVPN-SSL	: 587 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel  	: 444"  | tee -a log-install.txt
-echo "   - Squid Proxy	: 3355, 8085 (limit to IP Server)"  | tee -a log-install.txt
+echo "   - Squid Proxy	: 1105, 8085 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
